@@ -338,5 +338,49 @@
 
     </main>
 <script src="../js/url-cleaner.js"></script>
+
+      <!-- addition-->
+    
+    <script>
+(function () {
+  "use strict";
+
+  function stabilisePage() {
+    // Prevent accidental horizontal overflow
+    document.documentElement.style.overflowX = "hidden";
+    document.body.style.overflowX = "hidden";
+
+    // Add stable class to the page
+    document.body.classList.add("page-stable");
+
+    // Reserve image space after images load
+    document.querySelectorAll("img").forEach(function (image) {
+      if (!image.getAttribute("width") && !image.getAttribute("height")) {
+        image.style.maxWidth = "100%";
+        image.style.height = "auto";
+      }
+
+      image.addEventListener("error", function () {
+        image.style.visibility = "hidden";
+      });
+    });
+
+    // Stop accidental layout movement from empty containers
+    document.querySelectorAll(
+      "main, section, article, .page-content, .policy-page, .legal-page, .contact-page"
+    ).forEach(function (element) {
+      if (!element.style.minHeight) {
+        element.style.minHeight = "1px";
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", stabilisePage);
+  } else {
+    stabilisePage();
+  }
+})();
+</script>
 </body>
 </html>
