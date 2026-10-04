@@ -14,8 +14,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "256GB", increment: 1100 },
     ],
     colors: [
-      ["Black", "#171717"], ["White", "#f3f3f3"], ["Green", "#8fa88c"],
-      ["Yellow", "#f2cf4a"], ["Purple", "#a78bca"], ["Red", "#e53935"]
+      ["Black", "#171717", "11-black.png"], ["White", "#f3f3f3", "11-white.png"], ["Green", "#8fa88c", "11-greeen.png"],
+      ["Yellow", "#f2cf4a"], ["Purple", "#a78bca", "11-purple.png"], ["Red", "#e53935", "11-red.png"]
     ],
   },
 
@@ -28,8 +28,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "256GB", increment: 1100 },
     ],
     colors: [
-      ["Black", "#171717"], ["White", "#f3f3f3"], ["Blue", "#4c78c2"],
-      ["Green", "#7fa58b"], ["Purple", "#a889c6"], ["Red", "#e53935"]
+      ["Black", "#171717", "12-black.png"], ["White", "#f3f3f3", "12-white.png"], ["Blue", "#4c78c2", "12-blue.png"],
+      ["Green", "#7fa58b", "12-green.png"], ["Purple", "#a889c6", "12-purple.png"], ["Red", "#e53935"]
     ],
   },
 
@@ -42,8 +42,37 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1600 },
     ],
     colors: [
-      ["Midnight", "#1d2024"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa"],
-      ["Pink", "#e7a8b9"], ["Red", "#c9272c"], ["Green", "#7c9b83"]
+      ["Midnight", "#1d2024", "13-mid.png"], ["Starlight", "#eee9dc", "13-star.png"], ["Blue", "#5579aa", "13-blue.png"],
+      ["Pink", "#e7a8b9"], ["Red", "#c9272c", "13-red.png"], ["Green", "#7c9b83", "13-green.png"]
+    ],
+  },
+
+  // iPhone 13 Pro
+  {
+    match: ["iphone 13 pro max"],
+    exclude: ["max"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 700 },
+      { label: "512GB", increment: 1600 },
+    ],
+    colors: [
+      ["Midnight", "#1d2024", "13p-mid.png"], ["Starlight", "#eee9dc", "13p-red.png"], ["Blue", "#5579aa"],
+      ["Pink", "#e7a8b9", "13p-pink.png"], ["Red", "#c9272c", "13p-red.png"], ["Green", "#7c9b83", "13p-green.png"]
+    ],
+  },
+
+  // iPhone 13 Pro Max
+  {
+    match: ["iphone 13 pro max"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 700 },
+      { label: "512GB", increment: 1600 },
+    ],
+    colors: [
+      ["Midnight", "#1d2024", "13pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "13pm-blue.png"],
+      ["Pink", "#e7a8b9", "13pm-pink.png"], ["Red", "#c9272c", "13pm-red.png"], ["Green", "#7c9b83", "13pm-green.png"]
     ],
   },
 
@@ -56,8 +85,37 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1700 },
     ],
     colors: [
-      ["Midnight", "#1d2024"], ["Starlight", "#eee9dc"], ["Blue", "#6b8fc0"],
-      ["Purple", "#b9a1d1"], ["Yellow", "#f2cf4a"], ["Red", "#c9272c"]
+      ["Midnight", "#1d2024", "14-midnight.png"], ["Starlight", "#eee9dc", "14-star.png"], ["Blue", "#6b8fc0"],
+      ["Purple", "#b9a1d1", "14-purple.png"], ["Yellow", "#f2cf4a", "14-yellow.png"], ["Red", "#c9272c", "14-red.png"]
+    ],
+  },
+
+  // iPhone 14 Pro
+  {
+    match: ["iphone 14 pro max"],
+    exclude: ["max"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 800 },
+      { label: "512GB", increment: 1700 },
+    ],
+    colors: [
+      ["Midnight", "#1d2024", "14p-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "14p-blue.png"],
+      ["Pink", "#e7a8b9", "14p-pink.png"], ["Red", "#c9272c", "14p-red.png"], ["Green", "#7c9b83", "14p-green.png"]
+    ],
+  },
+
+  // iPhone 14 Pro Max
+  {
+    match: ["iphone 14 pro max"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 800 },
+      { label: "512GB", increment: 1700 },
+    ],
+    colors: [
+      ["Midnight", "#1d2024", "14pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "14pm-blue.png"],
+      ["Pink", "#e7a8b9", "14pm-pink.png"], ["Red", "#c9272c", "14pm-red.png"], ["Green", "#7c9b83", "14pm-green.png"]
     ],
   },
 
@@ -71,8 +129,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1800 },
     ],
     colors: [
-      ["Black", "#171717"], ["Blue", "#9ab7d8"], ["Green", "#a8c9b0"],
-      ["Yellow", "#f0d77b"], ["Pink", "#e7a8bb"]
+      ["Black", "#171717", "15-black.png"], ["Blue", "#9ab7d8", "15-blue.png"], ["Green", "#a8c9b0", "15-green.png"],
+      ["Yellow", "#f0d77b"], ["Pink", "#e7a8bb", "15-pink.png"]
     ],
   },
 
@@ -85,8 +143,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 2800 },
     ],
     colors: [
-      ["Black Titanium", "#292929"], ["White Titanium", "#e9e9e7"],
-      ["Blue Titanium", "#4e6178"], ["Natural Titanium", "#9b958b"]
+      ["Black Titanium", "#292929", "15pm-black.png"], ["White Titanium", "#e9e9e7", "15pm-white.png"],
+      ["Blue Titanium", "#4e6178", "15pm-blue.png"], ["Natural Titanium", "#9b958b"]
     ],
   },
 
@@ -101,8 +159,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3200 },
     ],
     colors: [
-      ["Black Titanium", "#292929"], ["White Titanium", "#e9e9e7"],
-      ["Blue Titanium", "#4e6178"], ["Natural Titanium", "#9b958b"]
+      ["Black Titanium", "#292929"], ["White Titanium", "#e9e9e7", "15p-white.png"],
+      ["Blue Titanium", "#4e6178", "15p-blue.png"], ["Natural Titanium", "#9b958b", "15p-natural.png"]
     ],
   },
 
@@ -116,8 +174,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1900 },
     ],
     colors: [
-      ["Black", "#171717"], ["White", "#f3f3f3"], ["Pink", "#e7a8b9"],
-      ["Teal", "#70aaa7"], ["Ultramarine", "#4d66a6"]
+      ["Black", "#171717", "16-black.png"], ["White", "#f3f3f3", "16-whitel.png"], ["Pink", "#e7a8b9"],
+      ["Teal", "#70aaa7", "16-teal.png"], ["Ultramarine", "#4d66a6", "16-ultra.png"]
     ],
   },
 
@@ -132,7 +190,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3200 },
     ],
     colors: [
-      ["Black Titanium", "#292929",], ["White Titanium", "#e9e9e7", "16p-white.png"],
+      ["Black Titanium", "#292929"], ["White Titanium", "#e9e9e7", "16p-white.png"],
       ["Desert Titanium", "#a88972", "16p-desert.png"], ["Natural Titanium", "#9b958b", "16p-natural.png"]
     ],
   },
@@ -160,8 +218,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1100 },
     ],
     colors: [
-      ["Black", "#171717"], ["White", "#f3f3f3"], ["Mist Blue", "#a9c1d4"],
-      ["Lavender", "#b8a6c7"], ["Sage", "#9eae99"]
+      ["Black", "#171717", "17-black.png"], ["White", "#f3f3f3", "17-white.png"], ["Mist Blue", "#a9c1d4", "17-blue.png"],
+      ["Lavender", "#b8a6c7", "17-lavender.png"], ["Sage", "#9eae99"]
     ],
   },
 
@@ -174,8 +232,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3000 },
     ],
     colors: [
-      ["Cosmic Orange", "#c87535"], ["Deep Blue", "#304d76"],
-      ["Silver", "#c8c8c8"]
+      ["Cosmic Orange", "#c87535"], ["Deep Blue", "#304d76", "17pm-blue.png"],
+      ["Silver", "#c8c8c8", "17pm-blue.png"]
     ],
   },
 
@@ -189,14 +247,16 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3000 },
     ],
     colors: [
-      ["Cosmic Orange", "#c87535"], ["Deep Blue", "#304d76"],
+      ["Cosmic Orange", "#c87535", "17p-orange.png"], ["Deep Blue", "#304d76", "17p-blue.png"],
       ["Silver", "#c8c8c8"]
     ],
   },
 
   // Samsung Galaxy S / Ultra family
   {
-    match: ["samsung galaxy s"],
+    match: ["samsung galaxy s22", "samsung galaxy s23",
+      "samsung galaxy s24", "samsung galaxy s25",
+      "samsung galaxy s26"],
     exclude: ["ultra"],
     storage: [
       { label: "128GB", increment: 0 },
