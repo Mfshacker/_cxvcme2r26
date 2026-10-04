@@ -132,8 +132,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3200 },
     ],
     colors: [
-      ["Black Titanium", "#292929"], ["White Titanium", "#e9e9e7"],
-      ["Desert Titanium", "#a88972"], ["Natural Titanium", "#9b958b"]
+      ["Black Titanium", "#292929",], ["White Titanium", "#e9e9e7", "16p-white.png"],
+      ["Desert Titanium", "#a88972", "16p-desert.png"], ["Natural Titanium", "#9b958b", "16p-natural.png"]
     ],
   },
 
