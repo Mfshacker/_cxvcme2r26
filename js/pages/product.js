@@ -84,6 +84,7 @@ function buildProductVariantControls(product) {
               type="button"
               class="product-color-option ${index === 0 ? "is-selected" : ""}"
               data-color="${escapeHtml(color[0])}"
+              data-color-image="${escapeHtml(color[2] || "")}"
               onclick="selectProductColor('${escapeHtml(color[0])}')"
               title="${escapeHtml(color[0])}"
               aria-label="${escapeHtml(color[0])}"
@@ -162,6 +163,58 @@ function renderVariantInstallmentButton(product, price, label) {
   `;
 }
 
+function resolveVariantImage(imageValue) {
+  const value = String(imageValue || "").trim();
+  if (!value) return "";
+
+  // Absolute URL/data URL is allowed for advanced use.
+  if (/^(https?:|data:|blob:)/i.test(value)) {
+    return value;
+  }
+
+  // Local variant images live in images/products/variants/.
+  return `../images/products/variants/${value.replace(/^[/\\]+/, "")}`;
+}
+
+function getSelectedVariantImage() {
+  const state = getCurrentVariantState();
+  const buttons = document.querySelectorAll(".product-color-option");
+
+  for (const button of buttons) {
+    if (button.dataset.color === state.color) {
+      return resolveVariantImage(button.dataset.colorImage);
+    }
+  }
+
+  return "";
+}
+
+function updateProductVariantImage() {
+  const image = document.querySelector(".product-detail-image img");
+  if (!image) return;
+
+  const baseImage = image.dataset.baseImage || image.getAttribute("src") || "";
+  const variantImage = getSelectedVariantImage();
+
+  // No colour-specific picture configured: keep the normal product image.
+  if (!variantImage) {
+    if (image.src !== new URL(baseImage, window.location.href).href) {
+      image.src = baseImage;
+    }
+    image.dataset.activeVariantImage = "";
+    return;
+  }
+
+  image.dataset.activeVariantImage = variantImage;
+  image.onerror = function () {
+    // If a configured variant picture doesn't exist yet, gracefully fall
+    // back to the original product picture instead of showing a broken image.
+    this.onerror = null;
+    this.src = baseImage;
+  };
+  image.src = variantImage;
+}
+
 function updateProductVariantUI() {
   const product = window.currentProductForVariants;
   if (!product) return;
@@ -212,6 +265,7 @@ function updateProductVariantUI() {
   });
 
   renderVariantInstallmentButton(product, price, label);
+  updateProductVariantImage();
 }
 
 function selectProductStorage(storage) {
@@ -282,6 +336,7 @@ function loadProductPage() {
     ? `
       <img
         src="../images/products/${product.image}"
+        data-base-image="../images/products/${product.image}"
         alt="${escapeHtml(product.name)}"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       >
