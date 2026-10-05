@@ -14,7 +14,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "256GB", increment: 1100 },
     ],
     colors: [
-      ["Black", "#171717", "11-black.png"], ["White", "#f3f3f3", "11-white.png"], ["Green", "#8fa88c", "11-greeen.png"],
+      ["Black", "#171717", "11-black.png"], ["White", "#f3f3f3", "11-white.png"], ["Green", "#8fa88c", "11-green.png"],
       ["Yellow", "#f2cf4a"], ["Purple", "#a78bca", "11-purple.png"], ["Red", "#e53935", "11-red.png"]
     ],
   },
@@ -233,7 +233,7 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
     colors: [
       ["Cosmic Orange", "#c87535"], ["Deep Blue", "#304d76", "17pm-blue.png"],
-      ["Silver", "#c8c8c8", "17pm-blue.png"]
+      ["Silver", "#c8c8c8", "17pm-silver.png"]
     ],
   },
 
