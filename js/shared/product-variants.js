@@ -247,7 +247,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3000 },
     ],
     colors: [
-      ["Cosmic Orange", "#c87535", "17p-orange.png"], ["Deep Blue", "#304d76", "17p-blue.png"],
+      ["Cosmic Orange", "#c87535", "17p-orange.png"], ["Deep Blue", "#304d76", "17p-blue (1).png"],
       ["Silver", "#c8c8c8"]
     ],
   },
