@@ -553,6 +553,29 @@
   border-color: var(--primary);
   transform: scale(1.08);
 }
+.product-color-option.is-unavailable {
+  position: relative;
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none !important;
+  pointer-events: none;
+}
+
+/* Red diagonal dash means this colour is not available for this model. */
+.product-color-option.is-unavailable::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 14px;
+  width: 27px;
+  height: 3px;
+  border-radius: 3px;
+  background: #dc2626;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.18);
+}
+
 
 .product-color-option.is-selected span {
   box-shadow:

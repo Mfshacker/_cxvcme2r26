@@ -30,10 +30,20 @@ function getInitialVariantState(product) {
   return {
     productId: Number(product.id),
     storage: config?.storage?.[0]?.label || "",
-    color: config?.colors?.[0]?.[0] || "",
+    color: (() => {
+      const firstAvailable = (config?.colors || []).find((color) =>
+        typeof isVariantColorAvailable !== "function" || isVariantColorAvailable(color)
+      );
+      return firstAvailable?.[0] || "";
+    })(),
     label: getVariantLabel(
       config?.storage?.[0]?.label || "",
-      config?.colors?.[0]?.[0] || ""
+      (() => {
+        const firstAvailable = (config?.colors || []).find((color) =>
+          typeof isVariantColorAvailable !== "function" || isVariantColorAvailable(color)
+        );
+        return firstAvailable?.[0] || "";
+      })()
     ),
   };
 }
@@ -79,20 +89,25 @@ function buildProductVariantControls(product) {
           <strong id="selectedColorLabel">${escapeHtml(config.colors[0][0])}</strong>
         </div>
         <div class="product-color-options" role="group" aria-label="Colour options">
-          ${config.colors.map((color, index) => `
+          ${config.colors.map((color) => {
+            const available = typeof isVariantColorAvailable !== "function" || isVariantColorAvailable(color);
+            return `
             <button
               type="button"
-              class="product-color-option ${index === 0 ? "is-selected" : ""}"
+              class="product-color-option ${available ? "" : "is-unavailable"}"
               data-color="${escapeHtml(color[0])}"
               data-color-image="${escapeHtml(color[2] || "")}"
+              data-color-available="${available ? "true" : "false"}"
               onclick="selectProductColor('${escapeHtml(color[0])}')"
-              title="${escapeHtml(color[0])}"
-              aria-label="${escapeHtml(color[0])}"
+              title="${escapeHtml(color[0])}${available ? "" : " — Unavailable"}"
+              aria-label="${escapeHtml(color[0])}${available ? "" : " — Unavailable"}"
+              aria-disabled="${available ? "false" : "true"}"
+              ${available ? "" : "disabled"}
               style="--variant-swatch:${color[1]};"
             >
               <span></span>
-            </button>
-          `).join("")}
+            </button>`;
+          }).join("")}
         </div>
       </div>
     `
@@ -270,7 +285,7 @@ function updateProductVariantUI() {
   document.querySelectorAll(".product-color-option").forEach((button) => {
     button.classList.toggle(
       "is-selected",
-      button.dataset.color === state.color
+      button.dataset.color === state.color && button.dataset.colorAvailable !== "false"
     );
   });
 
@@ -293,6 +308,13 @@ function selectProductStorage(storage) {
 function selectProductColor(color) {
   const product = window.currentProductForVariants;
   if (!product) return;
+
+  const selectedButton = Array.from(document.querySelectorAll(".product-color-option"))
+    .find((button) => button.dataset.color === String(color || ""));
+
+  // Never allow an unavailable colour to be selected, even if a script
+  // or old cached markup tries to trigger the function directly.
+  if (selectedButton?.dataset.colorAvailable === "false") return;
 
   window.currentProductVariantState = {
     ...getCurrentVariantState(),

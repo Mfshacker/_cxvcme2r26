@@ -388,6 +388,8 @@ replace the example values.
     // No image yet? Leave the third value out.
     // The normal product image will remain visible.
     ["Red", "#e53935"],
+    // Unavailable colour: add false as the fourth value.
+    ["Gold", "#d4af37", "", false],
   ],
 },
 
@@ -397,6 +399,13 @@ images/products/variants/
 The customer flow stays:
 View Details -> Storage -> Colour -> image changes -> price changes -> Cart.
 */
+
+function isVariantColorAvailable(color) {
+  // Colour format: [name, swatch, image, available]
+  // If the fourth value is omitted, the colour is available.
+  // Set it to false when that specific colour is not offered for the model.
+  return color?.[3] !== false;
+}
 
 function hasProductVariants(product) {
   const config = getProductVariantConfig(product);
@@ -423,5 +432,6 @@ function getVariantLabel(storage, color) {
 window.PRODUCT_VARIANT_CONFIG = PRODUCT_VARIANT_CONFIG;
 window.getProductVariantConfig = getProductVariantConfig;
 window.hasProductVariants = hasProductVariants;
+window.isVariantColorAvailable = isVariantColorAvailable;
 window.getVariantPrice = getVariantPrice;
 window.getVariantLabel = getVariantLabel;
