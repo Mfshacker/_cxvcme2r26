@@ -49,7 +49,7 @@ const PRODUCT_VARIANT_CONFIG = [
 
   // iPhone 13 Pro
   {
-    match: ["iphone 13 pro max"],
+    match: ["iphone 13 pro"],
     exclude: ["max"],
     storage: [
       { label: "128GB", increment: 0 },
@@ -92,7 +92,7 @@ const PRODUCT_VARIANT_CONFIG = [
 
   // iPhone 14 Pro
   {
-    match: ["iphone 14 pro max"],
+    match: ["iphone 14 pro"],
     exclude: ["max"],
     storage: [
       { label: "128GB", increment: 0 },
@@ -115,7 +115,7 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
     colors: [
       ["Midnight", "#1d2024", "14pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "14pm-blue.png"],
-      "Purple", "#a78bca",  "14pm-purple.png"], ["Red", "#c9272c", "14pm-red.png"], ["Yellow", "#f0d77b", "14pm-gold.png"]
+      ["Purple", "#a78bca", "14pm-purple.png"], ["Red", "#c9272c", "14pm-red.png"], ["Yellow", "#f0d77b", "14pm-gold.png"]
     ],
   },
 
