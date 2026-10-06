@@ -57,7 +57,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1600 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "13p-mid.png"], ["Starlight", "#eee9dc", "13p-red.png"], ["Blue", "#5579aa"],
+      ["Midnight", "#1d2024", "13p-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa"],
       ["Pink", "#e7a8b9", "13p-pink.png"], ["Red", "#c9272c", "13p-red.png"], ["Green", "#7c9b83", "13p-green.png"]
     ],
   },
@@ -313,19 +313,90 @@ const PRODUCT_VARIANT_CONFIG = [
 ];
 
 function getProductVariantConfig(product) {
+  const productId = String(product?.id ?? "").trim();
   const name = String(product?.name || "").toLowerCase().trim();
 
-  for (const config of PRODUCT_VARIANT_CONFIG) {
-    const matches = config.match.some((term) => name.includes(term));
-    const excluded = (config.exclude || []).some((term) => name.includes(term));
+  // ID matching is the safest option for future products. If a config
+  // contains productIds/ids, it wins over all name-based matching.
+  const idMatch = PRODUCT_VARIANT_CONFIG.find((config) => {
+    const ids = [
+      ...(Array.isArray(config.productIds) ? config.productIds : []),
+      ...(Array.isArray(config.ids) ? config.ids : []),
+    ].map((id) => String(id).trim());
 
-    if (matches && !excluded) {
-      return config;
-    }
-  }
+    return productId && ids.includes(productId);
+  });
 
-  return null;
+  if (idMatch) return idMatch;
+
+  // Backward-compatible name matching for the existing catalogue.
+  // Pick the MOST SPECIFIC matching model.
+  // Example: "iPhone 14 Pro Max" must use the 14 Pro Max
+  // configuration, not the more generic "iPhone 14" configuration.
+  const matches = PRODUCT_VARIANT_CONFIG
+    .map((config, index) => {
+      const matchedTerm = (config.match || [])
+        .map((term) => String(term).toLowerCase().trim())
+        .filter(Boolean)
+        .filter((term) => name.includes(term))
+        .sort((a, b) => b.length - a.length)[0] || "";
+
+      const excluded = (config.exclude || [])
+        .map((term) => String(term).toLowerCase().trim())
+        .filter(Boolean)
+        .some((term) => name.includes(term));
+
+      return {
+        config,
+        index,
+        matchedTerm,
+        score: excluded ? -1 : matchedTerm.length,
+      };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => {
+      // Longest matching model name wins. Keep original order only
+      // when two configurations have the same specificity.
+      if (b.score !== a.score) return b.score - a.score;
+      return a.index - b.index;
+    });
+
+  return matches.length ? matches[0].config : null;
 }
+
+/*
+============================================================
+FUTURE PHONE TEMPLATE
+============================================================
+To add a future phone, you can use its Supabase/product ID so the
+configuration cannot accidentally attach to another model with a
+similar name. Copy this object into PRODUCT_VARIANT_CONFIG and
+replace the example values.
+
+{
+  productIds: [9999],
+  storage: [
+    { label: "128GB", increment: 0 },
+    { label: "256GB", increment: 800 },
+    { label: "512GB", increment: 1700 },
+    { label: "1TB", increment: 3000 },
+  ],
+  colors: [
+    ["Black", "#171717", "future-phone-black.png"],
+    ["White", "#f3f3f3", "future-phone-white.png"],
+    ["Blue", "#4d66a6", "future-phone-blue.png"],
+    // No image yet? Leave the third value out.
+    // The normal product image will remain visible.
+    ["Red", "#e53935"],
+  ],
+},
+
+Put the images in:
+images/products/variants/
+
+The customer flow stays:
+View Details -> Storage -> Colour -> image changes -> price changes -> Cart.
+*/
 
 function hasProductVariants(product) {
   const config = getProductVariantConfig(product);

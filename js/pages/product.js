@@ -182,7 +182,12 @@ function getSelectedVariantImage() {
 
   for (const button of buttons) {
     if (button.dataset.color === state.color) {
-      return resolveVariantImage(button.dataset.colorImage);
+      // IMPORTANT: an empty data-color-image means that this colour
+      // does NOT have its own picture yet. In that case we return an
+      // empty string so the normal product image is always preserved.
+      const configuredImage = String(button.dataset.colorImage || "").trim();
+      if (!configuredImage) return "";
+      return resolveVariantImage(configuredImage);
     }
   }
 
@@ -206,12 +211,17 @@ function updateProductVariantImage() {
   }
 
   image.dataset.activeVariantImage = variantImage;
+
+  // If the colour-specific file is missing, broken, or cannot be loaded,
+  // immediately restore the ORIGINAL product image. This is deliberately
+  // tied to this exact product image element, so another model's picture
+  // can never be used as a fallback.
   image.onerror = function () {
-    // If a configured variant picture doesn't exist yet, gracefully fall
-    // back to the original product picture instead of showing a broken image.
     this.onerror = null;
+    this.dataset.activeVariantImage = "";
     this.src = baseImage;
   };
+
   image.src = variantImage;
 }
 
