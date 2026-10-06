@@ -65,48 +65,51 @@ async function renderCart() {
     const itemElement = document.createElement("div");
     itemElement.className = "cart-item";
 
-    // Resolve both new cart entries and older entries that stored a relative path.
-    const cartImage =
-      item.variantImage ||
-      item.image ||
-      (typeof resolveProductImage === "function"
-        ? resolveProductImage(item)
-        : null);
+    // Resolve the selected colour image separately from the product's normal image.
+    // Variant images are stored under images/products/variants/. If the selected
+    // variant image is missing, the cart falls back to THIS product's normal image.
+    function resolveCartAsset(value, isVariant = false) {
+      const raw = String(value || "").trim();
+      if (!raw) return "";
+      if (/^(https?:|data:|blob:)/i.test(raw)) return raw;
 
-    let cartImageUrl = null;
+      const clean = raw
+        .replace(/^\.\//, "")
+        .replace(/^\.\.\//, "")
+        .replace(/^\//, "");
 
-    if (cartImage) {
-      const value = String(cartImage).trim();
-
-      if (/^(https?:|data:|blob:)/i.test(value)) {
-        cartImageUrl = value;
+      let asset;
+      if (clean.startsWith("images/products/variants/")) {
+        asset = clean;
+      } else if (clean.startsWith("images/products/")) {
+        asset = clean;
       } else {
-        const clean = value
-          .replace(/^\.\//, "")
-          .replace(/^\.\.\//, "")
-          .replace(/^\//, "");
-
-        const asset = clean.startsWith("images/products/")
-          ? clean
+        asset = isVariant
+          ? `images/products/variants/${clean}`
           : `images/products/${clean}`;
-
-        cartImageUrl =
-          typeof getStoreAssetUrl === "function"
-            ? getStoreAssetUrl(asset)
-            : `../${asset}`;
       }
+
+      return typeof getStoreAssetUrl === "function"
+        ? getStoreAssetUrl(asset)
+        : `../${asset}`;
     }
 
+    const normalImage = item.image ||
+      (typeof resolveProductImage === "function" ? resolveProductImage(item) : "");
+    const normalImageUrl = resolveCartAsset(normalImage, false);
+    const variantImageUrl = resolveCartAsset(item.variantImage, true);
+    const cartImageUrl = variantImageUrl || normalImageUrl;
+    const safeIcon = item.icon || "fa-mobile-screen";
+
+    // If a variant image 404s, immediately restore the original product image.
     const imageHtml = cartImageUrl
       ? `<img src="${cartImageUrl}"
+          data-normal-image="${normalImageUrl.replace(/"/g, '&quot;')}"
+          data-variant-image="${variantImageUrl.replace(/"/g, '&quot;')}"
           alt="${escapeHtml(item.name)}"
           style="width:100%; height:100%; object-fit:contain;"
-          onerror="this.parentElement.innerHTML='<i class=\\'fa-solid ${
-            item.icon || "fa-mobile-screen"
-          }\\'></i>'">`
-      : `<i class="fa-solid ${
-          item.icon || "fa-mobile-screen"
-        }"></i>`;
+          onerror="if(this.dataset.variantImage && this.src === this.dataset.variantImage){this.onerror=null; this.src=this.dataset.normalImage;}else{this.parentElement.innerHTML='<i class=\'fa-solid ${safeIcon}\'></i>';}">`
+      : `<i class="fa-solid ${safeIcon}"></i>`;
 
     itemElement.innerHTML = `
       <div class="cart-product-image"
