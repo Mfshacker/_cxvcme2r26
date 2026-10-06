@@ -42,7 +42,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1600 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "13-mid.png"], ["Starlight", "#eee9dc", "13-star.png"], ["Blue", "#5579aa", "13-blue.png"],
+      ["Midnight", "#1d2024", "13-black.png"], ["Starlight", "#eee9dc", "13-white.png"], ["Blue", "#5579aa", "13-blue.png"],
       ["Pink", "#e7a8b9"], ["Red", "#c9272c", "13-red.png"], ["Green", "#7c9b83", "13-green.png"]
     ],
   },
@@ -57,8 +57,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1600 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "13p-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa"],
-      ["Pink", "#e7a8b9", "13p-pink.png"], ["Red", "#c9272c", "13p-red.png"], ["Green", "#7c9b83", "13p-green.png"]
+      ["Midnight", "#1d2024", "13p-black.png"], ["Starlight", "#eee9dc", "13p-white.png"], ["Blue", "#5579aa"],
+      ["Pink", "#e7a8b9", "13p-pink.png"], ["Red", "#c9272c", "", false], ["Green", "#7c9b83", "13p-green.png"]
     ],
   },
 
@@ -71,7 +71,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1600 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "13pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "13pm-blue.png"],
+      ["Midnight", "#1d2024", "13pm-black.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "13pm-blue.png"],
       ["Pink", "#e7a8b9", "13pm-pink.png"], ["Red", "#c9272c", "13pm-red.png"], ["Green", "#7c9b83", "13pm-green.png"]
     ],
   },
@@ -100,8 +100,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1700 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "14p-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "14p-blue.png"],
-      ["Pink", "#e7a8b9", "14p-pink.png"], ["Red", "#c9272c", "14p-red.png"], ["Green", "#7c9b83", "14p-green.png"]
+      ["Midnight", "#1d2024", "14p-black.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "", false],
+      ["Pink", "#e7a8b9", "14p-natural.png"], ["Red", "#c9272c", "", false], ["Green", "#7c9b83", "14p-green.png"]
     ],
   },
 
@@ -114,8 +114,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1700 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "14pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "14pm-blue.png"],
-      ["Purple", "#a78bca", "14pm-purple.png"], ["Red", "#c9272c", "14pm-red.png"], ["Yellow", "#f0d77b", "14pm-gold.png"]
+      ["Midnight", "#1d2024", "14pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "", false],
+      ["Purple", "#a78bca", "14pm-purple.png"], ["Red", "#c9272c", "", false], ["Yellow", "#f0d77b", "14pm-gold.png"]
     ],
   },
 
@@ -174,8 +174,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1900 },
     ],
     colors: [
-      ["Black", "#171717", "16-black.png"], ["White", "#f3f3f3", "16-whitel.png"], ["Pink", "#e7a8b9"],
-      ["Teal", "#70aaa7", "16-teal.png"], ["Ultramarine", "#4d66a6", "16-ultra.png"]
+      ["Black", "#171717", "16-black.png"], ["White", "#f3f3f3", "16-white.png"], ["Pink", "#e7a8b9"],
+      ["Teal", "#70aaa7", "16-teal.png"], ["Ultramarine", "#4d66a6", "16-blue.png"]
     ],
   },
 

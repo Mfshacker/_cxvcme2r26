@@ -97,8 +97,20 @@ function formatCheckoutPrice(price) {
 // HELPER TO GET IMAGE URL - FIX
 // ========================================
 function getCheckoutImageUrl(item) {
-  // Prefer the image saved in the cart, but repair old cart entries
-  // that contain a filename or a path relative to /pages/.
+  // Prefer the exact colour image selected on the product page.
+  // If no colour-specific image exists, fall back to the product's normal image.
+  const variantFilename = String(item?.variantImage || "").trim();
+  if (variantFilename) {
+    if (/^(https?:|data:|blob:)/i.test(variantFilename)) return variantFilename;
+    const cleanVariant = variantFilename.replace(/^\.\.\//, "").replace(/^\//, "");
+    const variantAsset = cleanVariant.startsWith("images/products/variants/")
+      ? cleanVariant
+      : `images/products/variants/${cleanVariant}`;
+    return typeof getStoreAssetUrl === "function"
+      ? getStoreAssetUrl(variantAsset)
+      : `../${variantAsset}`;
+  }
+
   const filename = item?.image || (typeof resolveProductImage === "function" ? resolveProductImage(item) : null);
   if (!filename) return null;
 
@@ -157,6 +169,7 @@ function renderCheckout() {
             </div>
             <div class="checkout-item-info">
                 <strong>${item.name}</strong>
+                ${item.variantLabel ? `<span class="checkout-item-variant">${item.variantLabel}</span>` : ""}
                 <span>${formatCheckoutPrice(price)}</span>
             </div>
             <strong class="checkout-item-price">${formatCheckoutPrice(itemTotal)}</strong>

@@ -67,6 +67,7 @@ async function renderCart() {
 
     // Resolve both new cart entries and older entries that stored a relative path.
     const cartImage =
+      item.variantImage ||
       item.image ||
       (typeof resolveProductImage === "function"
         ? resolveProductImage(item)

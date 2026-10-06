@@ -584,12 +584,21 @@ function addCurrentProductToCart(productId) {
     : "";
   const cartKey = `${product.id}::${state.storage || ""}::${state.color || ""}`;
 
+  const selectedColorButton = Array.from(document.querySelectorAll(".product-color-option"))
+    .find((button) => button.dataset.color === String(state.color || ""));
+  const variantImage = selectedColorButton?.dataset.colorImage || "";
+
   const cart = getCart();
   const existing = cart.find(
     (item) => String(item.variantKey || item.id) === cartKey
   );
 
   if (existing) {
+    // Keep the currently selected colour image/variant details on the cart line.
+    existing.variantImage = variantImage;
+    existing.variantStorage = state.storage || "";
+    existing.variantColor = state.color || "";
+    existing.variantLabel = variantLabel;
     existing.quantity += quantity;
   } else {
     cart.push({
@@ -599,6 +608,7 @@ function addCurrentProductToCart(productId) {
       category: product.category,
       price: selectedPrice,
       image: resolveProductImage(product),
+      variantImage: variantImage,
       quantity: quantity,
       variantKey: cartKey,
       variantStorage: state.storage || "",

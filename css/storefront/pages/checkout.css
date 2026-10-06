@@ -776,3 +776,13 @@
 .checkout-installment-amounts span { color: #fff; }
 .checkout-installment-amounts strong { color: #e8bf3f; text-align: right; }
 .checkout-installment-amounts small { display:block; margin-top:10px; color:#fff; line-height:1.5; }
+
+
+/* Selected storage/colour carried from the product page */
+.checkout-item-variant {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d4af37;
+}
