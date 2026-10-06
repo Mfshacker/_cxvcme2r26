@@ -944,3 +944,10 @@ body {
     bottom: 20px;
   }
 }
+
+
+/* FINAL CONTACT BREADCRUMB ALIGNMENT */
+.current-category-bar {
+  position: relative;
+  margin-top: 28px;
+}

@@ -109,3 +109,40 @@
     gap: 16px;
   }
 }
+
+
+/* FINAL HEADER ALIGNMENT — match the modern storefront header */
+.site-header {
+  background: #090909 !important;
+  color: #fff !important;
+  border-bottom: 1px solid #1d1d1d !important;
+}
+.header-container {
+  width: min(1305px, 100%);
+  min-height: 78px;
+  height: 78px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 30px;
+  background: #090909;
+}
+.logo-main, .logo-accent { color: #fff !important; font-size: 27px; font-weight: 800; }
+.logo-accent { color: #e8bf3f !important; }
+.search-container {
+  flex: 1; max-width: none; width: auto; height: 40px;
+  border: 1px solid #292929; border-radius: 9px; background: #111;
+}
+.search-container input { background:#111 !important; color:#fff !important; outline:0; }
+.search-container button { width:42px; background:#e8bf3f; color:#111; }
+.header-actions { display:flex; align-items:center; gap:10px; margin-left:auto; }
+.header-actions .cart { width:40px; height:40px; display:flex; align-items:center; justify-content:center; color:#aab2bf; text-decoration:none; position:relative; }
+.header-actions .cart span { position:absolute; top:0; right:0; width:19px; height:19px; border-radius:50%; background:#e8bf3f; color:#111; font-size:10px; display:flex; align-items:center; justify-content:center; font-weight:800; }
+.header-actions .whatsapp-button { background:#e8bf3f; color:#111; text-decoration:none; padding:12px 18px; border-radius:10px; font-size:13px; font-weight:800; display:flex; align-items:center; gap:8px; box-shadow:0 8px 25px rgba(232,191,63,.18); }
+.header-actions .track-button { border:1px solid #8d711d; color:#e8bf3f; text-decoration:none; padding:11px 17px; border-radius:10px; font-size:12px; font-weight:700; }
+.header-actions .track-button:hover { background:#e8bf3f; color:#111; }
+.navigation { background:#090909 !important; border-top:1px solid #1d1d1d !important; border-bottom:1px solid #1d1d1d !important; }
+.navigation .nav-content { min-height:62px; }
+.navigation .nav-link, .navigation .dropdown-trigger { color:#fff !important; }
+@media (max-width:1000px){ .header-actions .track-button{display:none;} }
+@media (max-width:760px){ .header-container{height:auto; min-height:0; flex-wrap:wrap; padding:15px 20px;} .search-container{order:3; flex-basis:100%;} .navigation .nav-content{overflow-x:auto;} }
+@media (max-width:500px){ .header-actions .whatsapp-button{font-size:0; padding:10px 12px;} .header-actions .whatsapp-button i{font-size:18px;} }
