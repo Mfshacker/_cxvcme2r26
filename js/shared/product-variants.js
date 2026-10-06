@@ -115,7 +115,7 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
     colors: [
       ["Midnight", "#1d2024", "14pm-mid.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "14pm-blue.png"],
-      ["Pink", "#e7a8b9", "14pm-pink.png"], ["Red", "#c9272c", "14pm-red.png"], ["Green", "#7c9b83", "14pm-green.png"]
+      "Purple", "#a78bca",  "14pm-purple.png"], ["Red", "#c9272c", "14pm-red.png"], ["Yellow", "#f0d77b", "14pm-gold.png"]
     ],
   },
 
