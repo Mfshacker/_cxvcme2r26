@@ -356,6 +356,15 @@ function loadProductPage() {
   // UPDATE PAGE TITLE
   document.title = `${product.name} | AfriGadgets`;
 
+  // Meta Pixel: ViewContent must use the exact catalog product ID.
+  afriMetaTrack("ViewContent", {
+    content_ids: [afriMetaProductId(product)],
+    content_type: "product",
+    content_name: product.name,
+    value: Number(product.price) || 0,
+    currency: "ZAR"
+  });
+
   // UPDATE BREADCRUMB
   const breadcrumb = document.getElementById("breadcrumbProduct");
 
@@ -619,6 +628,21 @@ function addCurrentProductToCart(productId) {
 
   saveCart(cart);
   updateCartCount();
+
+  // Meta Pixel: use the base catalog product ID even when a colour/storage
+  // variant is selected. The variant details remain in the cart separately.
+  afriMetaTrack("AddToCart", {
+    content_ids: [afriMetaProductId(product)],
+    content_type: "product",
+    content_name: product.name,
+    value: Number(selectedPrice) || 0,
+    currency: "ZAR",
+    contents: [{
+      id: afriMetaProductId(product),
+      quantity: quantity,
+      item_price: Number(selectedPrice) || 0
+    }]
+  });
 
   showCartMessage(
     variantLabel

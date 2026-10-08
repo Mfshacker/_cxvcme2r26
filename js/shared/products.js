@@ -4,6 +4,26 @@
 
 let products = [];
 
+
+// ============================================================
+// META PIXEL EVENT HELPERS
+// ============================================================
+window.afriMetaTrack = function (eventName, parameters = {}) {
+  try {
+    if (typeof window.fbq === "function") {
+      window.fbq("track", eventName, parameters);
+    }
+  } catch (error) {
+    console.warn("AfriGadgets Meta Pixel event failed:", error);
+  }
+};
+
+window.afriMetaProductId = function (product) {
+  return product && product.id !== undefined && product.id !== null
+    ? String(product.id)
+    : "";
+};
+
 // ============================================================
 // PRODUCT IMAGE RESOLVER
 // Keeps storefront images working even when a Supabase product
@@ -593,6 +613,15 @@ function addProductToCart(productId) {
   saveCart(cart);
 
   updateCartCount();
+
+  // Meta Pixel: keep content_ids identical to the catalog product IDs.
+  afriMetaTrack("AddToCart", {
+    content_ids: [afriMetaProductId(product)],
+    content_type: "product",
+    content_name: product.name,
+    value: Number(product.price) || 0,
+    currency: "ZAR"
+  });
 
   showCartMessage(`${escapeHtml(product.name)} added to cart`);
 }

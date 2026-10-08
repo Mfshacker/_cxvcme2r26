@@ -650,6 +650,31 @@ async function placeOrder() {
       return;
     }
 
+    // Meta Pixel: fire Purchase only after Supabase confirms the order exists.
+    const metaCart = getCheckoutCart();
+    const metaSubtotal = metaCart.reduce(
+      (sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 1),
+      0
+    );
+    const metaSettings = getStoreSettings();
+    const metaDelivery = Number(metaSettings.deliveryFee) || 0;
+    const metaInstallment = getInstallmentCheckout();
+    const metaValue = metaInstallment
+      ? Math.min(metaSubtotal, Number(metaInstallment.deposit) || 2000) + metaDelivery
+      : metaSubtotal + metaDelivery;
+
+    afriMetaTrack("Purchase", {
+      content_ids: metaCart.map(item => String(item.id)),
+      content_type: "product",
+      value: Number(metaValue.toFixed(2)),
+      currency: "ZAR",
+      contents: metaCart.map(item => ({
+        id: String(item.id),
+        quantity: Number(item.quantity) || 1,
+        item_price: Number(item.price) || 0
+      }))
+    });
+
     const emailResult = await sendOrderConfirmation(order);
     if (emailResult.error) {
       console.warn("AfriGadgets order confirmation email failed:", emailResult.error);
