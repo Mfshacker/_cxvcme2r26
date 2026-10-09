@@ -11,6 +11,7 @@
     <link rel="apple-touch-icon" href="../images/branding/afrigadgets-favicon.png" />
 <title>Contact Us | AfriGadgets</title>
 
+    <link rel="stylesheet" href="../css/storefront/style.css" />
     <link rel="stylesheet" href="../css/pages/contact.css" />
     <link rel="stylesheet" href="../css/storefront/theme.css" />
 
@@ -90,81 +91,124 @@ src="https://www.facebook.com/tr?id=2015382312515356&ev=PageView&noscript=1"
      HEADER
 ========================================= -->
 
-    <header class="site-header">
-      <div class="header-inner">
-        <!-- LOGO -->
+    <header class="header">
+      <div class="container header-content">
+        <a href="/" class="logo"> Afri<span>Gadgets</span> </a>
 
-        <a href="/" class="brand">
-          <div class="brand-logo">AF</div>
+        <div class="search-box">
+          <input
+            type="text"
+            id="homeSearch"
+            placeholder="What are you looking for?"
+          />
 
-          <div class="brand-text">
-            <strong> AfriGadgets </strong>
-
-            <small> PREMIUM GADGETS </small>
-          </div>
-        </a>
-
-        <div class="contact-header-search">
-          <input id="contactSearch" type="search" placeholder="Search products..." aria-label="Search products" />
-          <button type="button" onclick="performSiteSearch(document.getElementById('contactSearch'))" aria-label="Search">
+          <button onclick="searchHome()">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
 
-        <!-- NAVIGATION -->
+        <div class="header-actions">
+          <a href="/contact" class="header-action">
+            <i class="fa-regular fa-user"></i>
 
-        <!-- NAVIGATION -->
-
-        <nav class="main-nav">
-          <a href="/"> Home </a>
-
-          <div class="nav-shop">
-            <button type="button" onclick="toggleShopMenu()">
-              Shop
-
-              <i class="fa-solid fa-chevron-down"></i>
-            </button>
-
-            <div id="shopMenu" class="shop-menu">
-              <a href="/shop"> All Products </a>
-
-              <a href="/shop?category=cellphones"> Cellphones </a>
-
-              <a href="/shop?category=gadgets"> Gadgets </a>
-
-              <a href="/shop?category=tv"> Smart TVs </a>
-
-              <a href="/shop?category=solar"> Solar </a>
-
-              <a href="/shop?category=generators"> Generators </a>
-
-              <a href="/shop?category=fridges"> Fridges </a>
-            
-              <a href="/shop?category=audio"> Audio </a>
-              <a href="/shop?category=laptops"> Laptops </a>
-              <a href="/shop?category=gaming"> Gaming </a>
-              <a href="/shop?category=kitchen"> Kitchen Appliances </a>
-              <a href="/shop?category=electric-cars"> Electric Cars </a>
-              <a href="/shop?category=tablets"> Tablets </a>
-              <a href="/shop?category=wearables"> Wearables </a>
-              <a href="/shop?category=networking"> Networking </a>
-              <a href="/shop?category=smart-home"> Smart Home </a>
-            </div>
-          </div>
-
-          <a href="/offers">
-            Offers
-            <span class="offer-badge"></span>
+            <span> Connect </span>
           </a>
 
-          <a href="/new"> New </a>
+          <a href="/account" class="header-action">
+            <i class="fa-regular fa-user"></i>
 
-          <a href="/faq"> FAQ </a>
+            <span> Account </span>
+          </a>
 
-          <a href="/about"> About </a>
+          <a href="/cart" class="header-action cart-button">
+            <i class="fa-solid fa-cart-shopping"></i>
 
-          <a href="/contact" class="active"> Contact </a>
-        </nav>
+            <span> Cart </span>
+
+            <b id="cartCount"> 0 </b>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+      <div class="container nav-content">
+        <a href="/" class="nav-link"> Home </a>
+
+        <!-- SHOP ALL -->
+
+        <div class="nav-dropdown">
+          <a href="/shop" class="dropdown-trigger nav-link">
+            Shop All
+
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+
+          <div class="dropdown-menu">
+            <a href="/shop?category=cellphones">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              Cellphones
+            </a>
+
+            <a href="/shop?category=gadgets">
+              <i class="fa-solid fa-headphones"></i>
+              Gadgets
+            </a>
+
+            <a href="/shop?category=tv">
+              <i class="fa-solid fa-tv"></i>
+              Smart TVs
+            </a>
+
+            <a href="/shop?category=solar">
+              <i class="fa-solid fa-solar-panel"></i>
+              Solar
+            </a>
+
+            <a href="/shop?category=generators">
+              <i class="fa-solid fa-bolt"></i>
+              Generators
+            </a>
+
+            <a href="/shop?category=fridges">
+              <i class="fa-solid fa-snowflake"></i>
+              Fridges
+            </a>
+
+            <a href="/shop?category=audio">
+              <i class="fa-solid fa-volume-high"></i>
+              Audio
+            </a>
+
+            <a href="/shop?category=laptops"><i class="fa-solid fa-laptop"></i> Laptops</a>
+            <a href="/shop?category=gaming"><i class="fa-solid fa-gamepad"></i> Gaming</a>
+            <a href="/shop?category=kitchen"><i class="fa-solid fa-blender"></i> Kitchen Appliances</a>
+            <a href="/shop?category=electric-cars"><i class="fa-solid fa-car-side"></i> Electric Cars</a>
+            <a href="/shop?category=tablets"><i class="fa-solid fa-tablet-screen-button"></i> Tablets</a>
+            <a href="/shop?category=wearables"><i class="fa-solid fa-clock"></i> Wearables</a>
+            <a href="/shop?category=networking"><i class="fa-solid fa-wifi"></i> Networking</a>
+            <a href="/shop?category=smart-home"><i class="fa-solid fa-house-signal"></i> Smart Home</a>
+
+            <a href="/shop?category=other">
+              <i class="fa-solid fa-box"></i>
+              Other
+            </a>
+          </div>
+        </div>
+
+        <a href="/offers" class="nav-link"> Offers </a>
+
+        <a href="/new" class="nav-link"> New </a>
+
+        <a href="/faq" class="nav-link"> FAQ </a>
+
+        <a href="/about" class="nav-link"> About </a>
+
+        <a href="/contact" class="nav-link active"> Contact </a>
+      </div>
+    </nav>
 
         <!-- ACTIONS -->
 
