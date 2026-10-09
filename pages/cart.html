@@ -25,6 +25,54 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
       <link rel="stylesheet" href="../css/storefront/theme.css" />
+    <style>
+      .cart-items-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .cart-header-actions {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .clear-cart-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        min-height: 36px;
+        padding: 8px 12px;
+        border: 1px solid #b91c1c;
+        border-radius: 7px;
+        background: transparent;
+        color: #dc2626;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background .2s ease, color .2s ease, border-color .2s ease;
+      }
+      .clear-cart-button:hover,
+      .clear-cart-button:focus-visible {
+        background: #dc2626;
+        border-color: #dc2626;
+        color: #fff;
+      }
+      .clear-cart-button:focus-visible {
+        outline: 2px solid #eab308;
+        outline-offset: 3px;
+      }
+      @media (max-width: 520px) {
+        .cart-header-actions { gap: 8px; }
+        .clear-cart-button { padding: 7px 9px; }
+      }
+    </style>
+
   
     <!-- AfriGadgets Meta Pixel Code -->
 <script>
@@ -219,7 +267,18 @@ src="https://www.facebook.com/tr?id=2015382312515356&ev=PageView&noscript=1"
               <div class="cart-items-header">
                 <h2>Your Items</h2>
 
-                <span id="cartItemCount"> 0 items </span>
+                <div class="cart-header-actions">
+                  <span id="cartItemCount"> 0 items </span>
+                  <button
+                    type="button"
+                    id="clearCartButton"
+                    class="clear-cart-button"
+                    onclick="clearCart()"
+                    aria-label="Clear all items from cart">
+                    <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                    Clear Cart
+                  </button>
+                </div>
               </div>
 
               <div id="cartItems"></div>
@@ -363,6 +422,91 @@ src="https://www.facebook.com/tr?id=2015382312515356&ev=PageView&noscript=1"
     <script src="../js/shared/products.js"></script>
     <script src="../js/shared/main.js"></script>
     <script src="../js/pages/cart.js"></script>
+    <script>
+      // Clear all cart items while using the existing cart helpers.
+      function clearCart() {
+        const cart = typeof getCart === "function" ? getCart() : [];
+
+        if (!Array.isArray(cart) || cart.length === 0) {
+          return;
+        }
+
+        if (!window.confirm("Clear all items from your cart? This cannot be undone.")) {
+          return;
+        }
+
+        if (typeof saveCart !== "function") {
+          window.alert("Unable to clear the cart right now. Please refresh and try again.");
+          return;
+        }
+
+        saveCart([]);
+        if (typeof renderCart === "function") renderCart();
+        if (typeof updateCartCount === "function") updateCartCount();
+
+        if (typeof showToast === "function") {
+          showToast("Your cart has been cleared.");
+        } else {
+          window.alert("Your cart has been cleared.");
+        }
+      }
+    </script>
     <script src="../js/url-cleaner.js"></script>
+
+    
+<!-- AfriGadgets Custom Clear Cart Modal -->
+<div id="clearCartModal" class="clear-cart-modal" aria-hidden="true">
+  <div class="clear-cart-backdrop" onclick="closeClearCartModal()"></div>
+
+  <div
+    class="clear-cart-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="clearCartTitle"
+    aria-describedby="clearCartMessage"
+  >
+    <button
+      type="button"
+      class="clear-cart-close"
+      onclick="closeClearCartModal()"
+      aria-label="Close popup"
+    >&times;</button>
+
+    <div class="clear-cart-icon">
+      <i class="fa-solid fa-trash-can"></i>
+    </div>
+
+    <span class="clear-cart-eyebrow">AFRIGADGETS</span>
+
+    <h2 id="clearCartTitle">Clear your cart?</h2>
+
+    <p id="clearCartMessage">
+      Are you sure you want to remove all items from your cart?
+      This action cannot be undone.
+    </p>
+
+    <div class="clear-cart-actions">
+      <button
+        type="button"
+        class="clear-cart-cancel"
+        onclick="closeClearCartModal()"
+      >Keep My Items</button>
+
+      <button
+        type="button"
+        class="clear-cart-confirm"
+        onclick="confirmClearCart()"
+      >
+        <i class="fa-solid fa-trash-can"></i>
+        Clear Cart
+      </button>
+    </div>
+
+    <div class="clear-cart-secure">
+      <i class="fa-solid fa-shield-halved"></i>
+      Your cart, your choice.
+    </div>
+  </div>
+</div>
   </body>
 </html>

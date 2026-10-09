@@ -202,6 +202,58 @@ function changeCartQuantity(cartKey, amount) {
   renderCart();
 }
 
+
+function clearCart() {
+  const cart = getCart();
+
+  if (!Array.isArray(cart) || cart.length === 0) return;
+
+  const modal = document.getElementById("clearCartModal");
+  if (!modal) return;
+
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  const cancelButton = modal.querySelector(".clear-cart-cancel");
+  if (cancelButton) cancelButton.focus();
+}
+
+function closeClearCartModal() {
+  const modal = document.getElementById("clearCartModal");
+  if (!modal) return;
+
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+function confirmClearCart() {
+  const cart = getCart();
+
+  if (!Array.isArray(cart) || cart.length === 0) {
+    closeClearCartModal();
+    return;
+  }
+
+  saveCart([]);
+  closeClearCartModal();
+
+  renderCart();
+  updateCartCount();
+
+  if (typeof showToast === "function") {
+    showToast("Your cart has been cleared.");
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeClearCartModal();
+  }
+});
+
+
 function removeCartItem(cartKey) {
   let cart = getCart();
 

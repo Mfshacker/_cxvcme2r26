@@ -1971,3 +1971,183 @@ section {
 }
 
 
+
+/* ===== AfriGadgets Premium Clear Cart Popup ===== */
+
+.clear-cart-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+
+.clear-cart-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.clear-cart-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .82);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.clear-cart-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 34px 28px 24px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(145deg, #191919, #080808);
+  border: 1px solid rgba(242, 200, 75, .42);
+  border-radius: 20px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .65);
+  transform: translateY(18px) scale(.97);
+  transition: transform .25s ease;
+}
+
+.clear-cart-modal.is-open .clear-cart-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.clear-cart-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #292929;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.clear-cart-close:hover {
+  background: #3a3a3a;
+}
+
+.clear-cart-icon {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 19px;
+  border-radius: 50%;
+  color: #f2c84b;
+  background: rgba(242, 200, 75, .10);
+  border: 1px solid rgba(242, 200, 75, .3);
+  font-size: 26px;
+}
+
+.clear-cart-eyebrow {
+  display: block;
+  color: #f2c84b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.clear-cart-dialog h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.clear-cart-dialog p {
+  max-width: 320px;
+  margin: 0 auto 25px;
+  color: #bcbcbc;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.clear-cart-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.clear-cart-actions button {
+  flex: 1;
+  min-height: 46px;
+  padding: 12px 10px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.clear-cart-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.clear-cart-cancel {
+  color: #fff;
+  background: #252525;
+  border: 1px solid #454545;
+}
+
+.clear-cart-cancel:hover {
+  background: #333;
+}
+
+.clear-cart-confirm {
+  color: #fff;
+  background: #d92d35;
+  border: 1px solid #d92d35;
+}
+
+.clear-cart-confirm:hover {
+  background: #b91c24;
+}
+
+.clear-cart-secure {
+  margin-top: 21px;
+  color: #888;
+  font-size: 11px;
+}
+
+.clear-cart-secure i {
+  margin-right: 5px;
+  color: #f2c84b;
+}
+
+@media (max-width: 420px) {
+  .clear-cart-dialog {
+    padding: 32px 18px 22px;
+    border-radius: 16px;
+  }
+
+  .clear-cart-dialog h2 {
+    font-size: 23px;
+  }
+
+  .clear-cart-actions {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clear-cart-modal,
+  .clear-cart-dialog,
+  .clear-cart-actions button {
+    transition: none;
+  }
+}
