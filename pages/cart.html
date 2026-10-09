@@ -422,35 +422,7 @@ src="https://www.facebook.com/tr?id=2015382312515356&ev=PageView&noscript=1"
     <script src="../js/shared/products.js"></script>
     <script src="../js/shared/main.js"></script>
     <script src="../js/pages/cart.js"></script>
-    <script>
-      // Clear all cart items while using the existing cart helpers.
-      function clearCart() {
-        const cart = typeof getCart === "function" ? getCart() : [];
 
-        if (!Array.isArray(cart) || cart.length === 0) {
-          return;
-        }
-
-        if (!window.confirm("Clear all items from your cart? This cannot be undone.")) {
-          return;
-        }
-
-        if (typeof saveCart !== "function") {
-          window.alert("Unable to clear the cart right now. Please refresh and try again.");
-          return;
-        }
-
-        saveCart([]);
-        if (typeof renderCart === "function") renderCart();
-        if (typeof updateCartCount === "function") updateCartCount();
-
-        if (typeof showToast === "function") {
-          showToast("Your cart has been cleared.");
-        } else {
-          window.alert("Your cart has been cleared.");
-        }
-      }
-    </script>
     <script src="../js/url-cleaner.js"></script>
 
     

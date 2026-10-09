@@ -318,3 +318,38 @@
   font-weight: 700;
   line-height: 1.4;
 }
+
+
+/* ===== AfriGadgets premium clear-cart confirmation modal ===== */
+.clear-cart-modal {
+  position: fixed; inset: 0; z-index: 99999; display: flex;
+  align-items: center; justify-content: center; padding: 20px;
+  visibility: hidden; opacity: 0; pointer-events: none;
+  transition: opacity .22s ease, visibility .22s ease;
+}
+.clear-cart-modal.is-open { visibility: visible; opacity: 1; pointer-events: auto; }
+.clear-cart-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.78); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); }
+.clear-cart-dialog {
+  position: relative; z-index: 1; width: 100%; max-width: 420px; padding: 34px 28px 24px;
+  text-align: center; color: #fff; background: linear-gradient(145deg,#1c1c1c,#080808);
+  border: 1px solid rgba(242,200,75,.48); border-radius: 20px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.65); transform: translateY(16px) scale(.97);
+  transition: transform .22s ease;
+}
+.clear-cart-modal.is-open .clear-cart-dialog { transform: translateY(0) scale(1); }
+.clear-cart-close { position: absolute; top: 12px; right: 14px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: #292929; color: #fff; font-size: 25px; cursor: pointer; }
+.clear-cart-icon { width: 66px; height: 66px; display: grid; place-items: center; margin: 0 auto 18px; border-radius: 50%; color: #f2c84b; background: rgba(242,200,75,.1); border: 1px solid rgba(242,200,75,.3); font-size: 25px; }
+.clear-cart-eyebrow { display: block; margin-bottom: 9px; color: #f2c84b; font-size: 10px; font-weight: 800; letter-spacing: 3px; }
+.clear-cart-dialog h2 { margin: 0 0 12px; color: #fff; font-size: 26px; font-weight: 800; }
+.clear-cart-dialog p { max-width: 320px; margin: 0 auto 24px; color: #c2c2c2; font-size: 14px; line-height: 1.7; }
+.clear-cart-actions { display: flex; gap: 10px; }
+.clear-cart-actions button { flex: 1; min-height: 46px; padding: 12px 10px; border-radius: 9px; font-size: 13px; font-weight: 800; cursor: pointer; transition: transform .18s ease, background .18s ease; }
+.clear-cart-actions button:hover { transform: translateY(-2px); }
+.clear-cart-cancel { color: #fff; background: #252525; border: 1px solid #454545; }
+.clear-cart-cancel:hover { background: #333; }
+.clear-cart-confirm { color: #fff; background: #d92d35; border: 1px solid #d92d35; }
+.clear-cart-confirm:hover { background: #b91c24; }
+.clear-cart-secure { margin-top: 20px; color: #888; font-size: 11px; }
+.clear-cart-secure i { margin-right: 5px; color: #f2c84b; }
+@media(max-width:420px) { .clear-cart-dialog { padding: 32px 18px 22px; } .clear-cart-dialog h2 { font-size: 23px; } .clear-cart-actions { flex-direction: column-reverse; } }
+@media(prefers-reduced-motion:reduce) { .clear-cart-modal,.clear-cart-dialog,.clear-cart-actions button { transition: none; } }
