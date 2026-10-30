@@ -306,8 +306,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1300 },
     ],
     colors: [
-      ["Black", "#171717"], ["Silver", "#c6c8ca"],
-      ["Blue", "#536f9a"], ["Green", "#78947d"]
+      ["Black", "#171717", "zfold-black.png"], ["Silver", "#c6c8ca"],
+      ["Blue", "#536f9a", "zfold-blue.png"], ["Green", "#78947d", "", false]
     ],
   },
 ];
