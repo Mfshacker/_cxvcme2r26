@@ -71,7 +71,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "512GB", increment: 1600 },
     ],
     colors: [
-      ["Midnight", "#1d2024", "13pm-black.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "13pm-blue.png"],
+      ["Midnight", "#1d2024", "13pm-black1.png"], ["Starlight", "#eee9dc"], ["Blue", "#5579aa", "13pm-blue.png"],
       ["Pink", "#e7a8b9", "13pm-pink.png"], ["Red", "#c9272c", "", false], ["Green", "#7c9b83", "13pm-green.png"]
     ],
   },
