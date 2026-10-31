@@ -298,6 +298,19 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
   },
 
+  // Samsung Galaxy A16
+  {
+    match: ["samsung galaxy a"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 700 },
+    ],
+    colors: [
+      ["Black", "#171717", "sm16-black.png"], ["Silver", "#c6c8ca", "sm16-white.png"],
+      ["Blue", "#5b83b5", "sm16-blue.png"], ["Green", "#7c9b83", "" false]
+    ],
+  },
+
   // Samsung Galaxy Z Fold
   {
     match: ["samsung galaxy zfold", "samsung galaxy z fold"],
