@@ -300,7 +300,7 @@ const PRODUCT_VARIANT_CONFIG = [
 
   // Samsung Galaxy A16
   {
-    match: ["samsung galaxy a"],
+    match: ["samsung galaxy a16 5g"],
     storage: [
       { label: "128GB", increment: 0 },
       { label: "256GB", increment: 700 },
