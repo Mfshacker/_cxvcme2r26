@@ -129,6 +129,11 @@
   font-size: 15px;
 }
 
+
+.faq-answer a {
+  color:#c59b16;
+}
+
 /* ACTIVE */
 
 .faq-item.active .faq-question {
