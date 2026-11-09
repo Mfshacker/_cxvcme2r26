@@ -252,7 +252,6 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
   },
 
-
   // iPhone 18 Pro Max
   {
     match: ["iphone 18 pro max"],
@@ -263,8 +262,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "2TB", increment: 6500 },
     ],
     colors: [
-      ["Cosmic Orange", "#c87535"], ["Deep Blue", "#304d76", "18pm-blue.png"],
-      ["Silver", "#c8c8c8", "18pm-silver.png"]
+      ["Black", "#171717", "", false], ["Burgundy", "#800020"],
+      ["Glacier", "#B5E2F4", "", false], ["Silver", "#c8c8c8", "", false]
     ],
   },
 
@@ -278,8 +277,8 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "1TB", increment: 3000 },
     ],
     colors: [
-      ["Cosmic Orange", "#c87535", "18p-orange.png"], ["Deep Blue", "#304d76", "18p-blue.png"],
-      ["Silver", "#c8c8c8"]
+      ["Black", "#171717"], ["Burgundy", "#800020", "", false],
+      ["Glacier", "#B5E2F4", "", false], ["Silver", "#c8c8c8", "", false]
     ],
   },
 
