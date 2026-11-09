@@ -334,7 +334,7 @@ const PRODUCT_VARIANT_CONFIG = [
       { label: "256GB", increment: 700 },
     ],
     colors: [
-      ["Black", "#171717", "", false], ["Silver", "#c6c8ca", "", false],
+      ["Black", "#171717", "", false], ["White", "#c6c8ca"],
       ["Blue", "#5b83b5", "", false], ["Green", "#7c9b83", "", false]
     ],
   },
