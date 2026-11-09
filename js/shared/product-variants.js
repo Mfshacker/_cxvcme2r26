@@ -282,7 +282,22 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
   },
 
-  // Samsung Galaxy S family
+  // Samsung Galaxy S26
+  {
+    match: ["samsung galaxy s26"],
+    exclude: ["ultra"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 800 },
+      { label: "512GB", increment: 1800 },
+    ],
+    colors: [
+      ["Black", "#171717", "s26-black.png"], ["Silver Shadow", "#CFD2D3", "s26-silver.png"], ["Blue", "#587ca8"],
+      ["Pink Gold", "#DE9C8A", "s26-pink.png"], ["Violet", "#9c87b9", "s26-violet.png"], ["White", "#FFFFFF", "s26-white.png"]
+    ],
+  },
+
+  // Future Samsung Galaxy S Family
   {
     match: ["samsung galaxy s22", "samsung galaxy s23",
       "samsung galaxy s24", "samsung galaxy s25",
