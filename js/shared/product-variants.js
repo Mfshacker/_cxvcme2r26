@@ -287,7 +287,7 @@ const PRODUCT_VARIANT_CONFIG = [
 
   // Samsung Galaxy A series
   {
-    match: ["samsung galaxy a"],
+    match: ["samsung galaxy a56 5g", "samsung galaxy a16 5g", "samsung galaxy a26 5g", "samsung galaxy a37 5g", "samsung galaxy a27 5g"],
     storage: [
       { label: "128GB", increment: 0 },
       { label: "256GB", increment: 700 },
