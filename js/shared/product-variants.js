@@ -252,7 +252,38 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
   },
 
-  // Samsung Galaxy S / Ultra family
+
+  // iPhone 18 Pro Max
+  {
+    match: ["iphone 18 pro max"],
+    storage: [
+      { label: "256GB", increment: 0 },
+      { label: "512GB", increment: 1200 },
+      { label: "1TB", increment: 3000 },
+      { label: "2TB", increment: 6500 },
+    ],
+    colors: [
+      ["Cosmic Orange", "#c87535"], ["Deep Blue", "#304d76", "18pm-blue.png"],
+      ["Silver", "#c8c8c8", "18pm-silver.png"]
+    ],
+  },
+
+  // iPhone 18 Pro
+  {
+    match: ["iphone 18 pro"],
+    exclude: ["max"],
+    storage: [
+      { label: "256GB", increment: 0 },
+      { label: "512GB", increment: 1200 },
+      { label: "1TB", increment: 3000 },
+    ],
+    colors: [
+      ["Cosmic Orange", "#c87535", "18p-orange.png"], ["Deep Blue", "#304d76", "18p-blue.png"],
+      ["Silver", "#c8c8c8"]
+    ],
+  },
+
+  // Samsung Galaxy S family
   {
     match: ["samsung galaxy s22", "samsung galaxy s23",
       "samsung galaxy s24", "samsung galaxy s25",
@@ -340,9 +371,9 @@ const PRODUCT_VARIANT_CONFIG = [
   },
 
 
-  // Samsung Galaxy Z Fold
+  // Samsung Galaxy Z Fold 5
   {
-    match: ["samsung galaxy zfold", "samsung galaxy z fold"],
+    match: ["samsung galaxy zfold 5"],
     storage: [
       { label: "256GB", increment: 0 },
       { label: "512GB", increment: 1300 },
