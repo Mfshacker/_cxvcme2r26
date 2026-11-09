@@ -285,9 +285,50 @@ const PRODUCT_VARIANT_CONFIG = [
     ],
   },
 
-  // Samsung Galaxy A series
+  // Samsung Galaxy A16
   {
-    match: ["samsung galaxy a56 5g", "samsung galaxy a16 5g", "samsung galaxy a26 5g", "samsung galaxy a37 5g", "samsung galaxy a27 5g"],
+    match: ["samsung galaxy a16 5g"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 700 },
+    ],
+    colors: [
+      ["Black", "#171717", "sm16-black.png"], ["Silver", "#c6c8ca"],
+      ["Blue", "#5b83b5", "sm16-blue.png"], ["Green", "#7c9b83", "", false]
+    ],
+  },
+
+
+  // Samsung Galaxy A56
+  {
+    match: ["samsung galaxy a56 5g"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 700 },
+    ],
+    colors: [
+      ["Black", "#171717"], ["Silver", "#c6c8ca", "", false],
+      ["Blue", "#5b83b5", "", false], ["Green", "#7c9b83", "", false]
+    ],
+  },
+
+  // Samsung Galaxy A27
+  {
+    match: ["samsung galaxy a27 5g"],
+    storage: [
+      { label: "128GB", increment: 0 },
+      { label: "256GB", increment: 700 },
+    ],
+    colors: [
+      ["Black", "#171717", "", false], ["Silver", "#c6c8ca", "", false],
+      ["Blue", "#5b83b5", "", false], ["Green", "#7c9b83"]
+    ],
+  },
+
+
+  // Samsung Galaxy A26 & A37
+  {
+    match: ["samsung galaxy a26 5g", "samsung galaxy a37 5g"],
     storage: [
       { label: "128GB", increment: 0 },
       { label: "256GB", increment: 700 },
@@ -297,6 +338,7 @@ const PRODUCT_VARIANT_CONFIG = [
       ["Blue", "#5b83b5", "", false], ["Green", "#7c9b83", "", false]
     ],
   },
+
 
   // Samsung Galaxy Z Fold
   {
