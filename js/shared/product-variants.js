@@ -401,18 +401,17 @@ const PRODUCT_VARIANT_CONFIG = [
 // pool table
   {
     match: ["pool table"],
-    exclude: ["max"],
     storage: [
-      { label: "256GB", increment: 0 },
-      { label: "512GB", increment: 1200 },
-      { label: "1TB", increment: 3000 },
+      { label: "SMALL", increment: 0 },
+      { label: "MEDIUM", increment: 350 },
+      { label: "LARGE", increment: 650 },
     ],
     colors: [
       ["green", "#04fd0c"], ["Blue", "#2056a1", "pool-blue.png"],
       ["red", "#fc0000", "pool-red.png"], ["yellow", "#e0fd04", "", false]
     ],
   },
-  ];
+];
 
 function getProductVariantConfig(product) {
   const productId = String(product?.id ?? "").trim();
